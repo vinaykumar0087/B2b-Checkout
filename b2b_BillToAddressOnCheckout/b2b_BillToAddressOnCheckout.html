@@ -1,0 +1,83 @@
+<template>
+    <template if:true={defaultAddr}>
+        <template if:true={defaultAddr.billToAddress}>
+            <div class="addTypeTitle slds-p-top_medium slds-p-bottom_medium">
+                <lightning-formatted-text value={label.B2B_Billing_AddressLabel}>
+                </lightning-formatted-text>
+            </div>
+            <div class="addBody slds-p-top_small slds-p-bottom_small">
+                <c-b2b_-cart-addresses add-type-label="Bill To" is-bill-to={isBilling} is-ship-to={isShipping}
+                    billing-data={defaultAddr} shipping-data=null onopenbilltomodal={openModal}></c-b2b_-cart-addresses>
+
+                <div class="slds-m-left_large changeTxt slds-p-top_small slds-p-bottom_small">
+                    <a onclick={hangleChangeAddress}>Change</a>
+                </div>
+
+            </div>
+        </template>
+        <template if:false={defaultAddr.billToAddress}>
+            <template if:true={isBillingAddExist}>
+                <div class="slds-m-left_large changeTxt slds-p-top_small slds-p-bottom_small">
+                    <a onclick={hangleChangeAddress}>{label.selectBillingAddLabel}</a>
+                </div>
+            </template>
+            <template if:false={isBillingAddExist}>
+                <div class="slds-m-left_large changeTxt slds-p-top_small slds-p-bottom_small">
+                    {label.noBillingAddLabel}
+                </div>
+            </template>
+        </template>
+    </template>
+    <template if:true={showmodal}>
+        <section role="dialog" id={modalClass} tabindex="-1" class="slds-modal slds-fade-in-open slds-modal_small"
+            aria-labelledby="modal-heading-01" aria-modal="true" aria-describedby="modal-content-id-1">
+            <div class="slds-modal__container addrModal" style="height:80%">
+                <header class="slds-modal__header">
+
+                    <lightning-button-icon icon-name="utility:close" class="slds-float_right" onclick={closeModal}
+                        alternative-text="close"></lightning-button-icon>
+                    <h2 id="modal-heading" class="slds-modal__title slds-hyphenate modalTitle">{label.billingAddLabel}</h2>
+                </header>
+
+                <div class="slds-modal__content slds-p-around_medium" id="modal-content-id-1">
+                   
+                     <div class="slds-p-top_medium slds-p-bottom_medium">
+                               <c-b2b_-pick-list labelval="Contacts" picklist={contactOption} 
+                               defaulttxt={selectedContactName} onoptionselected={getSelectedValue}>
+
+                                </c-b2b_-pick-list>
+                            </div>
+                            <div class="slds-p-top_medium slds-p-bottom_medium">
+                    <c-b2b_-pick-list labelval="Select Billing Address" picklist={billingOption} 
+                    defaulttxt={selectedBillingAddrTxt} onoptionselected={getSelectedValue}>
+
+                    </c-b2b_-pick-list>
+
+                    <template if:true={isAddrAvailableForEdit}>
+                                  
+                            <div class="slds-m-left_large changeTxt slds-p-top_small slds-p-bottom_small">
+                                <a onclick={handleEditAddress}>{label.editAddrLabel}</a>
+                            </div>
+                          
+                                <template if:true={showEditAddress}>
+                                    <!-- <c-b2b_-addresses-support-ticket onclosemodal={closedModal}
+                                        onupdateaddress={updateAddrRecord} onnewaddress={newAddrRecord}
+                                        showmodal={showEditAddress} record={addRecord} action={action}
+                                        is-addr-based-on-contact={isAddrBasedOnContact}
+                                        update-billing-addr={billingAddrVerified}
+                                        update-shipping-addr={shippingAddrVerified}></c-b2b_-addresses-support-ticket> -->
+                                </template>
+                            </template>
+
+                    </div>
+                </div>
+                <footer class="slds-modal__footer">
+                    <lightning-button variant="brand" label="Save" title="Save" onclick={saveCart}
+                        class="slds-m-left_x-small"></lightning-button>
+                </footer>
+            </div>
+        </section>
+        <div class="slds-backdrop slds-backdrop_open"></div>
+    </template>
+
+</template>
