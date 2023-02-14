@@ -1,0 +1,27 @@
+.addTypeTitle{
+color: #031723 !important;
+    font-size: 20px !important;
+    font-weight: 700 !important;
+}
+.labelTxt{
+    margin-top: 20px !important;
+    margin-bottom: 10px !important;
+    color: #031723 !important;
+    font-weight: 600;
+    font-size: 16px;
+}
+.changeTxt{
+    font-size: 16px!important;
+    font-weight: 700!important;
+}
+.addBody{
+    background: #f2f2f2 !important;
+}
+.addrModal .slds-modal__content{
+    overflow:initial;
+        }
+        .modalTitle{
+            color: #031723!important;
+        font-weight: 600;
+        font-size: 20px;
+        }
