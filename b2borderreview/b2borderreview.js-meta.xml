@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<LightningComponentBundle xmlns="http://soap.sforce.com/2006/04/metadata">
+    <apiVersion>55.0</apiVersion>
+    <isExposed>true</isExposed>
+    <masterLabel>B2B order Review</masterLabel>
+    <description>order Review page</description>
+    <targets>
+        <target>lightning__FlowScreen</target>
+        <target>lightningCommunity__Page</target>
+        <target>lightningCommunity__Default</target>
+        <target>lightning__AppPage</target>
+    </targets>
+    <targetConfigs>
+        <targetConfig targets="lightningCommunity__Default">
+            <property name="orderId" type="String" label="Order Id for Order Confirmation Page" description="Order id for Order Summary Page" default="{!recordId}"/>
+        </targetConfig>
+        
+        <targetConfig targets="lightning__FlowScreen">
+            <property name="cartId" type="String" label="Cart ID" description="Current cart id"/>
+            <property name="contactPointAddressId" type="String" label="selectShippingAddressId" description="Selected Shipping Address"/>
+        </targetConfig>
+    </targetConfigs>
+</LightningComponentBundle>

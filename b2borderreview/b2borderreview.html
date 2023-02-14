@@ -1,0 +1,196 @@
+<template>
+    <lightning-layout multiple-rows vertical-align="flex-start" class="x-medium">
+        <lightning-layout-item padding="around-small" size="4" flexibility="auto">
+            {_contactPointAddressId}
+            <div class="c-container">
+                <template if:true={buyerInfo}>
+                    <h1>Buyer Information</h1>
+                    <p>{buyerInfo.Account.Name}</p>
+                    <p>{buyerInfo.Name}</p>
+                    <p>{buyerInfo.Email}</p>
+                    <p>{buyerInfo.Phone}</p>
+                </template>
+            </div>
+        </lightning-layout-item>
+        <lightning-layout-item padding="around-small" size="4" flexibility="auto">
+            <template if:true={shipInfo}>
+                <h1>Shipping Information</h1>
+                <p>{shipInfo.Country}</p>
+                <p>{shipInfo.Street}</p>
+                <p>{shipInfo.City}</p>
+                <p>{shipInfo.State}</p>
+                <p>{shipInfo.PostalCode}</p>
+            </template>
+
+        </lightning-layout-item>
+        <lightning-layout-item padding="around-small" size="4" flexibility="auto">
+            <template if:true={billInfo}>
+                <h1>Billing Information</h1>
+                <p>{billInfo.Country}</p>
+                <p>{billInfo.Street}</p>
+                <p>{billInfo.City}</p>
+                <p>{billInfo.State}</p>
+                <p>{billInfo.PostalCode}</p>
+            </template>
+        </lightning-layout-item>
+    </lightning-layout>
+    <template if:true={cartInfo}>
+        <div class="slds-box slds-m-top_small">
+            <template if:true={cartInfo}>
+                <lightning-layout>
+                    <lightning-layout-item size="4" small-device-size="3" medium-device-size="3" large-device-size="3">
+                        <div class="slds-m-bottom_small slds-text-title_bold slds-m-left_medium slds-text-title_small">
+                            <h1>Product Name</h1>
+                        </div>
+                    </lightning-layout-item>
+                    <lightning-layout-item size="2" small-device-size="2" medium-device-size="2" large-device-size="2">
+                        <div class="slds-m-bottom_small slds-text-title_bold slds-m-left_medium slds-text-title_small">
+                            <h1>Product Sku</h1>
+                        </div>
+                    </lightning-layout-item>
+                    <lightning-layout-item size="2" small-device-size="2" medium-device-size="2" large-device-size="2">
+                        <div class="slds-m-bottom_small slds-text-title_bold slds-m-left_medium slds-text-title_small">
+                            <h1>Quantity</h1>
+                        </div>
+                    </lightning-layout-item>
+                    <lightning-layout-item size="2" small-device-size="2" medium-device-size="2" large-device-size="2">
+                        <div class="slds-m-bottom_small slds-m-left_medium slds-text-title_bold slds-text-title_small">
+                        <h1>Unit Price</h1>
+                        </div>
+                    </lightning-layout-item>
+                    <lightning-layout-item size="2" small-device-size="2" medium-device-size="2" large-device-size="2">
+                        <div class="slds-m-bottom_small slds-m-left_medium slds-text-title_bold slds-text-title_small">
+                            <h1>Total Price</h1>
+                        </div>
+                    </lightning-layout-item>
+                </lightning-layout>
+            </template>
+            <template for:each={cartInfo} for:item="eachCartItem" if:true={cartInfo}>
+                <div class="slds-border_top" key ={eachCartItem.Id}>
+                    <lightning-layout>
+                        <lightning-layout-item size="4" small-device-size="3" medium-device-size="3" large-device-size="3">
+                            <div class="slds-m-top_small slds-m-left_medium slds-text-title_small">
+                                <h1>{eachCartItem.Product2.Name}</h1>
+                            </div>
+                        </lightning-layout-item>
+                        <lightning-layout-item size="2" small-device-size="2" medium-device-size="2" large-device-size="2">
+                            <div class="slds-m-top_small  slds-m-left_medium slds-text-title_small">
+                                <h1>{eachCartItem.Sku}</h1>
+                            </div>
+                        </lightning-layout-item>
+                        <lightning-layout-item size="2" small-device-size="2" medium-device-size="2" large-device-size="2">
+                            <div class="slds-m-top_small slds-m-left_medium slds-text-title_small">
+                                <h1>{eachCartItem.Quantity}</h1>
+                            </div>
+                        </lightning-layout-item>
+                        <lightning-layout-item size="2" small-device-size="2" medium-device-size="2" large-device-size="2">
+                            <div class="slds-m-top_small slds-m-left_medium  slds-text-title_small">
+                            <h1>{eachCartItem.SalesPrice}</h1>
+                            </div>
+                        </lightning-layout-item>
+                        <lightning-layout-item size="2" small-device-size="2" medium-device-size="2" large-device-size="2">
+                            <div class="slds-m-top_small slds-m-left_medium slds-text-title_small">
+                                <h1>{eachCartItem.TotalAmount}</h1>
+                            </div>
+                        </lightning-layout-item>
+                    </lightning-layout>
+                </div>
+            </template>
+            <template for:each={orderInfo} for:item="eachOrderItem" if:true={orderInfo}>
+                <div class="slds-border_top" key ={eachOrderItem.Id}>
+                    <lightning-layout>
+                        <lightning-layout-item size="4" small-device-size="3" medium-device-size="3" large-device-size="3">
+                            <div class="slds-m-top_small slds-m-left_medium slds-text-title_small">
+                                <h1>{eachOrderItem.Product2.Name}</h1>
+                            </div>
+                        </lightning-layout-item>
+                        <lightning-layout-item size="2" small-device-size="2" medium-device-size="2" large-device-size="2">
+                            <div class="slds-m-top_small  slds-m-left_medium slds-text-title_small">
+                                <h1>{eachOrderItem.StockKeepingUnit}</h1>
+                            </div>
+                        </lightning-layout-item>
+                        <lightning-layout-item size="2" small-device-size="2" medium-device-size="2" large-device-size="2">
+                            <div class="slds-m-top_small slds-m-left_medium slds-text-title_small">
+                                <h1>{eachOrderItem.Quantity}</h1>
+                            </div>
+                        </lightning-layout-item>
+                        <lightning-layout-item size="2" small-device-size="2" medium-device-size="2" large-device-size="2">
+                            <div class="slds-m-top_small slds-m-left_medium  slds-text-title_small">
+                            <h1>{eachOrderItem.UnitPrice}</h1>
+                            </div>
+                        </lightning-layout-item>
+                        <lightning-layout-item size="2" small-device-size="2" medium-device-size="2" large-device-size="2">
+                            <div class="slds-m-top_small slds-m-left_medium slds-text-title_small">
+                                <h1>{eachOrderItem.TotalLineAmount}</h1>
+                            </div>
+                        </lightning-layout-item>
+                    </lightning-layout>
+                </div>
+            </template>
+        </div>
+    </template>
+    <template if:true={orderInfo}>
+        <div class="slds-box slds-m-top_small">
+            <template if:true={orderInfo}>
+                <lightning-layout>
+                    <lightning-layout-item size="4" small-device-size="3" medium-device-size="3" large-device-size="3">
+                        <div class="slds-m-bottom_small slds-text-title_bold slds-m-left_medium slds-text-title_small">
+                            <h1>Product Name</h1>
+                        </div>
+                    </lightning-layout-item>
+                    <lightning-layout-item size="2" small-device-size="2" medium-device-size="2" large-device-size="2">
+                        <div class="slds-m-bottom_small slds-text-title_bold slds-m-left_medium slds-text-title_small">
+                            <h1>Product Sku</h1>
+                        </div>
+                    </lightning-layout-item>
+                    <lightning-layout-item size="2" small-device-size="2" medium-device-size="2" large-device-size="2">
+                        <div class="slds-m-bottom_small slds-text-title_bold slds-m-left_medium slds-text-title_small">
+                            <h1>Quantity</h1>
+                        </div>
+                    </lightning-layout-item>
+                    <lightning-layout-item size="2" small-device-size="2" medium-device-size="2" large-device-size="2">
+                        <div class="slds-m-bottom_small slds-m-left_medium slds-text-title_bold slds-text-title_small">
+                        <h1>Unit Price</h1>
+                        </div>
+                    </lightning-layout-item>
+                    <lightning-layout-item size="2" small-device-size="2" medium-device-size="2" large-device-size="2">
+                        <div class="slds-m-bottom_small slds-m-left_medium slds-text-title_bold slds-text-title_small">
+                            <h1>Total Price</h1>
+                        </div>
+                    </lightning-layout-item>
+                </lightning-layout>
+            </template>
+            <template for:each={orderInfo} for:item="eachOrderItem" if:true={orderInfo}>
+                <div class="slds-border_top" key ={eachOrderItem.Id}>
+                    <lightning-layout>
+                        <lightning-layout-item size="4" small-device-size="3" medium-device-size="3" large-device-size="3">
+                            <div class="slds-m-top_small slds-m-left_medium slds-text-title_small">
+                                <h1>{eachOrderItem.Product2.Name}</h1>
+                            </div>
+                        </lightning-layout-item>
+                        <lightning-layout-item size="2" small-device-size="2" medium-device-size="2" large-device-size="2">
+                            <div class="slds-m-top_small  slds-m-left_medium slds-text-title_small">
+                                <h1>{eachOrderItem.StockKeepingUnit}</h1>
+                            </div>
+                        </lightning-layout-item>
+                        <lightning-layout-item size="2" small-device-size="2" medium-device-size="2" large-device-size="2">
+                            <div class="slds-m-top_small slds-m-left_medium slds-text-title_small">
+                                <h1>{eachOrderItem.Quantity}</h1>
+                            </div>
+                        </lightning-layout-item>
+                        <lightning-layout-item size="2" small-device-size="2" medium-device-size="2" large-device-size="2">
+                            <div class="slds-m-top_small slds-m-left_medium  slds-text-title_small">
+                            <h1>{eachOrderItem.UnitPrice}</h1>
+                            </div>
+                        </lightning-layout-item>
+                        <lightning-layout-item size="2" small-device-size="2" medium-device-size="2" large-device-size="2">
+                            <div class="slds-m-top_small slds-m-left_medium slds-text-title_small">
+                                <h1>{eachOrderItem.TotalLineAmount}</h1>
+                            </div>
+                        </lightning-layout-item>
+                    </lightning-layout>
+                </div>
+            </template>
+        </div>
+    </template> 
+</template>
